@@ -1,7 +1,7 @@
 #profile-title: HotVPN🔥
 #support-url: https://t.me/Wd_Life
 #profile-update-interval: 24
-#announce: ТГК: https://t.me/Wd_Life от 06.04.2026 11:00
+#announce: ТГК: https://t.me/Wd_Life от 06.04.2026 11:17
 ################################
 vless://8f8380ae-9f5d-4cb5-8f5f-0f70fbe054a9@159.195.77.197:7443?security=reality&encryption=none&pbk=5QAO98ot2U7TcGs_f6EEaQjCzNOJLNHqPf6smYsdFVI&headerType=none&fp=chrome&allowinsecure=0&type=tcp&flow=xtls-rprx-vision&sni=chat.deepseek.com&sid=be0ce047#%F0%9F%87%A9%F0%9F%87%AA+Germany+%7C+%F0%9F%8C%90+%7C+%5BIPv6%5D+%5B*CIDR%5D
 vless://6d916d55-fead-4ff3-a3a9-83e175ea8ad7@188.225.75.198:443?security=tls&encryption=none&alpn=h3,h2,http/1.1&headerType=none&fp=chrome&allowinsecure=0&type=tcp&flow=xtls-rprx-vision&sni=ru198.mechvpn.online#%F0%9F%87%B5%F0%9F%87%B1+Poland+%7C+%F0%9F%8C%90+%7C+%5BIPv6%5D+%5B*CIDR%5D
