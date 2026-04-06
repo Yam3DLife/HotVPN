@@ -1,6 +1,6 @@
 #profile-title: HotVPN🔥
 #support-url: https://t.me/Wd_Life
-#profile-update-interval: 24
+#profile-update-interval: 5
 #announce: ТГК: https://t.me/Wd_Life от 06.04.2026 11:25
 ################################
 vless://771297ed-c526-4fe3-bea4-919e89665bc9@51.250.45.246:443?flow=xtls-rprx-vision&type=tcp&headerType=none&security=reality&fp=random&sni=ads.x5.ru&pbk=e6QVzqAw4kvQHxdu2pFsLnadziIWm9DjOo2rul_NgAk&sid=8ac77e6b777376f8&spx=/#%F0%9F%87%B7%F0%9F%87%BA%D0%9E%D0%B1%D1%85%D0%BE%D0%B4%20%D0%B3%D0%BB%D1%83%D1%88%D0%B8%D0%BB%D0%BE%D0%BA%201
