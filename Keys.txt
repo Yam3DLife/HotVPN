@@ -1,7 +1,7 @@
 #profile-title: HotVPN🔥
 #support-url: https://t.me/Wd_Life
 #profile-update-interval: 5
-#announce: ТГК: https://t.me/Wd_Life от 06.04.2026 11:25
+#announce: ТГК: https://t.me/Wd_Life от 09.04.2026 21:05
 ################################
 vless://81de8a98-9c3c-07d0-bdf4-91fba80fe7e9@cluster11.anti-vpn.ru:52006?security=tls&encryption=none&alpn=http/1.1&headerType=none&fp=chrome&allowinsecure=1&type=tcp&flow=xtls-rprx-vision#%F0%9F%87%B7%F0%9F%87%BA+%E2%9A%A1%F0%9F%9F%A9+%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F+%5BVPN%5D+%232
 vless://e282bc50-e4e9-4a26-9837-ea6372bab3fc@extbalancer.msemse.ru:443?security=reality&encryption=none&pbk=-nZqMxt7meVxfnQeK46MAYh5scb0M6La82axD8KHJXk&headerType=none&fp=random&allowinsecure=0&type=tcp&flow=xtls-rprx-vision&sni=i.oneme.ru&sid=d4a9f26c#%F0%9F%87%B7%F0%9F%87%BA%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F+%28LTE+%D0%A1%D0%B5%D1%80%D0%B2%D0%B5%D1%80+-+%D0%90%D0%B2%D1%82%D0%BE+%F0%9F%94%A5%F0%9F%9A%80%29+%F0%9F%A4%96
