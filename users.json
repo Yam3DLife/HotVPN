@@ -7,6 +7,6 @@
   "telegram_12345": {
     "status": "active",
     "expire_date": "2026-04-16",
-    "traffic_limit_gb": 50
+    "traffic_limit_gb": 0
   }
 }
