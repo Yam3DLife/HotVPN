@@ -8,5 +8,10 @@
     "status": "blocked",
     "expire_date": "2026-04-16",
     "traffic_limit_gb": 0
+  },
+  "EvgenYa": {
+    "status": "active",
+    "expire_date": "2026-05-16",
+    "traffic_limit_gb": 0
   }
 }
