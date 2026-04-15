@@ -3,53 +3,77 @@ import base64
 import os
 from datetime import datetime
 
-# 🔑 ВАША ОСНОВНАЯ ССЫЛКА (из вашего Keys.txt)
-# Берём ВЕСЬ контент вашего Keys.txt как есть (с заголовками и всеми ключами)
+# ВСТАВЬТЕ СЮДА ВЕСЬ ТЕКСТ ИЗ ВАШЕГО Keys.txt (от #profile-title до последней строчки)
 BASE_CONFIG = """#profile-title: HotVPN🔥
 #support-url: https://t.me/Wd_Life
 #profile-update-interval: 5
 #announce: ТГК: https://t.me/Wd_Life от 09.04.2026 21:09
 ################################
 
-vless://81de8a98-9c3c-07d0-bdf4-91fba80fe7e9@cluster11.anti-vpn.ru:52006?security=tls&encryption=none&alpn=http/1.1&headerType=none&fp=chrome&allowinsecure=1&type=tcp&flow=xtls-rprx-vision#%F0%9F%87%B7%F0%9F%87%BA+%E2%9A%A1%F0%9F%9F%A9+%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F+%5BVPN%5D+%232
-vless://e282bc50-e4e9-4a26-9837-ea6372bab3fc@extbalancer.msemse.ru:443?security=reality&encryption=none&pbk=-nZqMxt7meVxfnQeK46MAYh5scb0M6La82axD8KHJXk&headerType=none&fp=random&allowinsecure=0&type=tcp&flow=xtls-rprx-vision&sni=i.oneme.ru&sid=d4a9f26c#%F0%9F%87%B7%F0%9F%87%BA%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F+%28LTE+%D0%A1%D0%B5%D1%80%D0%B2%D0%B5%D1%80+-+%D0%90%D0%B2%D1%82%D0%BE+%F0%9F%94%A5%F0%9F%9A%80%29+%F0%9F%A4%96
-... (и все остальные ключи из вашего Keys.txt)
+ВАШИ ВСЕ VLESS КЛЮЧИ... (СКОПИРУЙТЕ ИХ СЮДА ИЗ ФАЙЛА Keys.txt)
 """
 
-def generate_subscription(user_id, user_info):
-    if user_info.get('status') != 'active':
-        return None
+# --- ФУНКЦИЯ ДЛЯ ДОБАВЛЕНИЯ ИНФОРМАЦИИ О ПОДПИСКЕ ---
+def add_metadata_to_config(base_config, expire_timestamp, total_bytes):
+    """
+    Добавляет в начало конфига заголовки для Happ.
+    """
+    # Формируем строку с информацией о трафике и сроке
+    # upload=0; download=0 - мы не можем считать трафик, поэтому просто показываем лимит
+    user_info = f"upload=0; download=0; total={total_bytes}; expire={expire_timestamp}"
     
-    expire_date = user_info.get('expire_date')
-    if expire_date:
-        expire_dt = datetime.fromisoformat(expire_date)
-        if datetime.now() > expire_dt:
-            return None
-    
-    # Берём вашу основную конфигурацию
-    config = BASE_CONFIG
-    
-    # Кодируем в base64 (как требует Happ)
-    encoded = base64.b64encode(config.encode()).decode()
-    return encoded
+    # Формируем финальный конфиг. Порядок важен: сначала метаданные, потом ключи.
+    final_config = (
+        f"#profile-title: HotVPN🔥\n"
+        f"#profile-update-interval: 5\n"
+        f"#support-url: https://t.me/Wd_Life\n"
+        f"#subscription-userinfo: {user_info}\n"
+        f"#sub-expire: true\n" # Включаем напоминание об истечении подписки в Happ
+        f"\n{base_config}"
+    )
+    # Кодируем в base64, как и раньше
+    return base64.b64encode(final_config.encode()).decode()
+# ----------------------------------------------------
 
 def main():
+    # Создаем папку, если её нет
+    os.makedirs('subs', exist_ok=True)
+    
+    # Читаем список пользователей
     with open('users.json', 'r', encoding='utf-8') as f:
         users = json.load(f)
     
-    os.makedirs('subs', exist_ok=True)
-    
+    # Обрабатываем каждого пользователя
     for user_id, user_info in users.items():
-        subscription = generate_subscription(user_id, user_info)
-        
-        if subscription:
-            with open(f'subs/{user_id}.txt', 'w', encoding='utf-8') as f:
-                f.write(subscription)
-            print(f"✅ Сгенерировано: {user_id}")
-        else:
+        if user_info.get('status') != 'active':
+            # Если пользователь не активен, удаляем его файл, если он есть
             if os.path.exists(f'subs/{user_id}.txt'):
                 os.remove(f'subs/{user_id}.txt')
-                print(f"❌ Удалён (неактивен): {user_id}")
+                print(f"❌ Пользователь {user_id} заблокирован, файл удален.")
+            continue
+        
+        # --- ПОЛУЧАЕМ ДАННЫЕ ПОЛЬЗОВАТЕЛЯ ---
+        # 1. Срок подписки (переводим дату из users.json в timestamp)
+        expire_date_str = user_info.get('expire_date')
+        if expire_date_str:
+            expire_timestamp = int(datetime.strptime(expire_date_str, "%Y-%m-%d").timestamp())
+        else:
+            expire_timestamp = 0 # Если даты нет, значит подписка вечная или не указана
+
+        # 2. Лимит трафика (в байтах)
+        # Добавьте поле 'traffic_limit_gb' в ваш файл users.json!
+        traffic_limit_gb = user_info.get('traffic_limit_gb', 50) # По умолчанию 50GB
+        total_bytes = traffic_limit_gb * 1073741824 # Переводим гигабайты в байты
+        # ---------------------------------
+        
+        # Генерируем финальную подписку с метаданными
+        final_subscription = add_metadata_to_config(BASE_CONFIG, expire_timestamp, total_bytes)
+        
+        # Записываем результат в файл пользователя
+        with open(f'subs/{user_id}.txt', 'w', encoding='utf-8') as f:
+            f.write(final_subscription)
+            
+        print(f"✅ Подписка для {user_id} обновлена. Срок: {expire_date_str}, Лимит: {traffic_limit_gb} GB.")
 
 if __name__ == "__main__":
     main()
