@@ -4,7 +4,7 @@ import os
 from datetime import datetime
 
 # ВСТАВЬТЕ СЮДА ВЕСЬ ТЕКСТ ИЗ ВАШЕГО Keys.txt (от #profile-title до последней строчки)
-BASE_CONFIG = """#profile-title: HotVPN🔥
+BASE_CONFIG = """#profile-title: HotVPN_ViP🔥
 #support-url: https://t.me/Wd_Life
 #profile-update-interval: 5
 #announce: ТГК: https://t.me/Wd_Life от 09.04.2026 21:09
