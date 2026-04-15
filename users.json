@@ -1,0 +1,8 @@
+{
+  "test_user_1": {
+    "status": "active",
+    "expire_date": "2026-06-15",
+    "plan": "monthly",
+    "note": "Иван (тестовый)"
+  }
+}
