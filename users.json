@@ -1,8 +1,12 @@
 {
   "test_user_1": {
     "status": "active",
-    "expire_date": "2026-06-15",
-    "plan": "monthly",
-    "note": "Иван (тестовый)"
+    "expire_date": "2026-04-25",
+    "traffic_limit_gb": 100
+  },
+  "telegram_12345": {
+    "status": "active",
+    "expire_date": "2026-04-16",
+    "traffic_limit_gb": 50
   }
 }
